@@ -21,7 +21,7 @@ def open_redirect():
 @app.route("/sqli/<username>")
 def show_user(username):
     with connection.cursor() as cursor:
-      cursor.execute("SELECT * FROM users WHERE username = '%s'" % username)
+      cursor.execute("SELECT * FROM users WHERE username = ?", (username, ))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000)
